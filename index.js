@@ -45,8 +45,33 @@ app.post('/api/genres', (req, res) => {
   })
 })
 
-app.put('/api/genres/:id', (req, res) => {})
-app.delete('/api/genres/:id', (req, res) => {})
+app.put('/api/genres/:id', (req, res) => {
+  const genre = genres.find(item => item.id === parseInt(req.params.id))
+  if (!genre) return res.status(404).send('The genre was not found')
+
+  const { error } = validateGenre(req.body)
+  if (error) return res.status(400).send(error.details[0].message)
+  genre.title = req.body.title
+  genre.genre = req.body.genre
+
+  return res.send({
+    message: 'The genre was updated successfully',
+    genre
+  })
+})
+
+app.delete('/api/genres/:id', (req, res) => {
+  const genre = genres.find(item => item.id === parseInt(req.params.id))
+  if (!genre) return res.status(404).send('The genre was not found')
+
+  const index = genres.indexOf(genre)
+  genres.splice(index, 1)
+
+  return res.send({
+    message: 'The genre was deleted successfully',
+    genre
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
