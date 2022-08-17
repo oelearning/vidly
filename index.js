@@ -5,11 +5,48 @@ const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
+// Tempo Data
+const genres = [
+  { title: 'ToyStory 3', genre: 'Kids', id: 1 },
+  { title: 'John Wick 2', genre: 'Action', id: 2 },
+  { title: 'What happened yesterday?', genre: 'Comedy', id: 3 }
+]
+
 app.use(express.json())
 
+// Get all genres
 app.get('/api/genres', (req, res) => {
-  res.send('Hello World!')
+  res.send(genres)
 })
+
+// Get genre by id
+app.get('/api/genres/:id', (req, res) => {
+  const genre = genres.find(item => item.id === parseInt(req.params.id))
+  if (!genre) return res.status(404).send('The genre was not found')
+
+  return res.send(genre)
+})
+
+// Create new genre
+app.post('/api/genres', (req, res) => {
+  const { error } = validateGenre(req.body)
+  if (error) return res.status(400).send(error.details[0].message)
+
+  const genre = {
+    id: genres.length + 1,
+    title: req.body.title,
+    genre: req.body.genre
+  }
+
+  genres.push(genre)
+  return res.send({
+    message: 'The movie was created successfully',
+    genre
+  })
+})
+
+app.put('/api/genres/:id', (req, res) => {})
+app.delete('/api/genres/:id', (req, res) => {})
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
