@@ -1,0 +1,20 @@
+{
+  "name": "vidly",
+  "version": "1.0.0",
+  "description": "Vidly is an imaginary service for renting out movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oelearning/vidly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oelearning/vidly/issues"
+  },
+  "homepage": "https://github.com/oelearning/vidly#readme"
+}
