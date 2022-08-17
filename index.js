@@ -14,3 +14,12 @@ app.get('/api/genres', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
+
+function validateGenre (genre) {
+  const schema = Joi.object({
+    title: Joi.string().min(3).required(),
+    genre: Joi.string().min(3).required()
+  })
+
+  return schema.validate(genre)
+}
