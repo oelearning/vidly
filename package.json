@@ -27,7 +27,6 @@
     "extends": "./node_modules/standard/eslintrc.json"
   },
   "dependencies": {
-    "config": "3.3.7",
     "express": "4.18.1",
     "helmet": "5.1.1",
     "joi": "17.6.0",
