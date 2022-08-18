@@ -1,3 +1,5 @@
+const morgan = require('morgan')
+const helmet = require('helmet')
 const Joi = require('joi')
 const express = require('express')
 const app = express()
@@ -12,7 +14,16 @@ const genres = [
   { title: 'What happened yesterday?', genre: 'Comedy', id: 3 }
 ]
 
+// Middlewares
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
+app.use(helmet())
+
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'))
+  console.log('Morgan enabled...')
+}
 
 // Get all genres
 app.get('/api/genres', (req, res) => {
