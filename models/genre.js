@@ -21,4 +21,4 @@ const validateGenre = genre => {
   return schema.validate(genre)
 }
 
-module.exports = { GenreModel, validateGenre }
+module.exports = { GenreModel, validateGenre, genreSchema }
