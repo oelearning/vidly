@@ -1,4 +1,3 @@
-
 const Joi = require('joi')
 const { genreSchema } = require('./genre')
 const { model, Schema } = require('mongoose')
