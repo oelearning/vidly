@@ -1,5 +1,4 @@
-const { GenreModel } = require('../models/genre')
-const { validateGenre } = require('../models/genre')
+const { GenreModel, validateGenre } = require('../models/genre')
 const express = require('express')
 const router = express.Router()
 
