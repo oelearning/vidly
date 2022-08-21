@@ -1,5 +1,6 @@
 const morgan = require('morgan')
 const helmet = require('helmet')
+const customers = require('./routes/customers')
 const genres = require('./routes/genres')
 const mongoose = require('mongoose')
 const express = require('express')
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(helmet())
 app.use('/api/genres', genres)
+app.use('/api/customers', customers)
 
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'))
