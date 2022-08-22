@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 })
 
 // Get movie by id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const movie = await MovieModel().findById(req.params.id)
   if (!movie) return res.status(404).send('The movie was not found')
 
@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
 })
 
 // Update a movie by id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const { error } = validateMovie(req.body)
   if (error) return res.status(400).send(error.details[0].message)
 
@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
 })
 
 // Delete a movie by id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const movie = await MovieModel().findByIdAndRemove(req.params.id)
   if (!movie) return res.status(404).send('The movie was not found')
 
