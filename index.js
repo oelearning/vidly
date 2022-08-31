@@ -33,3 +33,5 @@ if (app.get('env') === 'development') {
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
+
+console.log('Hello world')
