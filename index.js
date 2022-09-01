@@ -5,6 +5,7 @@ const movies = require('./routes/movies')
 const customers = require('./routes/customers')
 const genres = require('./routes/genres')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const express = require('express')
 const app = express()
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URL)
   .catch(err => console.error('Could not connected to MongoDB', err))
 
 // Middlewares
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
